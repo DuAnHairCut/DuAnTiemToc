@@ -1,0 +1,242 @@
+/* Custom Font Styles for Modern Typography */
+
+/* Apply Poppins font to body and most text elements */
+body,
+p,
+span,
+div,
+a,
+button,
+input,
+textarea,
+select,
+.nav-link,
+.form-control,
+.btn {
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Arial, sans-serif !important;
+  font-feature-settings: "kern" 1, "liga" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Apply Merriweather to headings and decorative elements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.heading,
+.heading-1,
+.heading-2,
+.ftco-heading-2,
+.navbar-brand,
+.bread,
+.slider-text h1,
+.ftco-services .text h3 {
+  font-family: "Merriweather", Georgia, serif !important;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Specific typography improvements */
+.navbar-brand {
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-weight: 900;
+  line-height: 1.2;
+}
+
+h2 {
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+h3 {
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+/* Improve readability */
+p {
+  font-weight: 400;
+  line-height: 1.7;
+  color: #444;
+  letter-spacing: 0.01em;
+}
+
+/* Modern button styles */
+.btn {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: none;
+}
+
+/* Navigation improvements */
+.nav-link {
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* Form improvements */
+.form-control {
+  font-weight: 400;
+}
+
+/* Footer improvements */
+.ftco-footer {
+  font-weight: 400;
+}
+
+.ftco-footer .ftco-heading-2 {
+  font-weight: 700;
+}
+
+/* Meta text improvements */
+.meta,
+.meta a {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+/* Blog content improvements */
+.blog-entry .heading a {
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Sidebar improvements */
+.sidebar .heading-2 {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+/* Comment improvements */
+.comment-body h3 {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* Tags improvements */
+.tag-cloud-link {
+  font-weight: 500;
+  font-size: 13px;
+}
+
+/* Additional modern font improvements */
+.hero-wrap .slider-text h1 {
+  font-family: "Merriweather", serif !important;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  font-size: 4.5vw !important;
+}
+
+/* Responsive font sizes for hero text */
+@media (max-width: 768px) {
+  .hero-wrap .slider-text h1 {
+    font-size: 6vw !important;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-wrap .slider-text h1 {
+    font-size: 7vw !important;
+    line-height: 1.3;
+  }
+}
+
+@media (min-width: 1400px) {
+  .hero-wrap .slider-text h1 {
+    font-size: 4vw !important;
+  }
+}
+
+.hero-wrap .slider-text p {
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+.hero-wrap .slider-text .subheading {
+  font-family: "Poppins", sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  letter-spacing: 2px !important;
+  margin-bottom: 20px;
+}
+
+/* Responsive subheading sizes */
+@media (max-width: 768px) {
+  .hero-wrap .slider-text .subheading {
+    font-size: 18px !important;
+    letter-spacing: 1.5px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-wrap .slider-text .subheading {
+    font-size: 16px !important;
+    letter-spacing: 1px !important;
+  }
+}
+
+@media (min-width: 1400px) {
+  .hero-wrap .slider-text .subheading {
+    font-size: 22px !important;
+  }
+}
+
+/* Service cards */
+.ftco-services .text {
+  font-family: "Poppins", sans-serif !important;
+}
+
+.ftco-services .text h3 {
+  font-family: "Merriweather", serif !important;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* Testimonials */
+.testimony-section .quote {
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.8;
+}
+
+.testimony-section .name {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+/* Blog cards */
+.blog-entry .text h3 a {
+  font-family: "Merriweather", serif !important;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.blog-entry .text p {
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+/* Footer improvements */
+.ftco-footer h2 {
+  font-family: "Merriweather", serif !important;
+  font-weight: 700;
+}
+
+.ftco-footer p,
+.ftco-footer a {
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 400;
+}
