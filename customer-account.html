@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <title>Tài Khoản Khách Hàng - Hair Studio</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+    <link rel="stylesheet" href="css/ionicons.min.css" />
+    <link rel="stylesheet" href="css/flaticon.css" />
+    <link rel="stylesheet" href="css/icomoon.css" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+      body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .login-container {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .login-card,
+      .dashboard-card {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        max-width: 1200px;
+        width: 100%;
+      }
+
+      .login-card {
+        max-width: 450px;
+      }
+
+      .login-header {
+        background: linear-gradient(135deg, #e67e22 0%, #f39c12 100%);
+        color: white;
+        text-align: center;
+        padding: 30px;
+      }
+
+      .login-header h3 {
+        margin: 0;
+        font-weight: 600;
+      }
+
+      .login-body {
+        padding: 40px;
+      }
+
+      .form-group {
+        margin-bottom: 25px;
+      }
+
+      .form-group label {
+        font-weight: 500;
+        color: #2c3e50;
+        margin-bottom: 8px;
+        display: block;
+      }
+
+      .form-control {
+        border: 2px solid #ecf0f1;
+        border-radius: 10px;
+        padding: 12px 15px;
+        font-size: 16px;
+        transition: all 0.3s;
+      }
+
+      .form-control:focus {
+        border-color: #e67e22;
+        box-shadow: 0 0 0 0.2rem rgba(230, 126, 34, 0.25);
+        outline: none;
+      }
+
+      .btn-login {
+        background: linear-gradient(135deg, #e67e22 0%, #f39c12 100%);
+        border: none;
+        border-radius: 10px;
+        padding: 12px 30px;
+        font-weight: 600;
+        color: white;
+        width: 100%;
+        font-size: 16px;
+        transition: transform 0.3s;
+      }
+
+      .btn-login:hover {
+        transform: translateY(-2px);
+        color: white;
+      }
+
+      .dashboard-container {
+        display: none;
+        min-height: 100vh;
+        background: #f8f9fa;
+      }
+
+      .dashboard-header {
+        background: white;
+        padding: 20px 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .user-info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .user-avatar {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #e67e22 0%, #f39c12 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+      }
+
+      .user-details h5 {
+        margin: 0;
+        color: #2c3e50;
+        font-weight: 600;
+      }
+
+      .user-details p {
+        margin: 0;
+        color: #7f8c8d;
+        font-size: 14px;
+      }
+
+      .dashboard-content {
+        padding: 30px 0;
+      }
+
+      .stats-card {
+        background: white;
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        margin-bottom: 20px;
+        transition: transform 0.3s;
+      }
+
+      .stats-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .stats-number {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #e67e22;
+        margin-bottom: 10px;
+      }
+
+      .stats-label {
+        color: #7f8c8d;
+        font-weight: 500;
+      }
+
+      .section-card {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+        margin-bottom: 30px;
+      }
+
+      .section-header {
+        background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+        color: white;
+        padding: 20px 25px;
+        font-weight: 600;
+        font-size: 18px;
+      }
+
+      .section-body {
+        padding: 25px;
+      }
+
+      .transaction-item {
+        border-bottom: 1px solid #ecf0f1;
+        padding: 20px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .transaction-item:last-child {
+        border-bottom: none;
+      }
+
+      .transaction-info {
+        flex: 1;
+      }
+
+      .transaction-service {
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 5px;
+      }
+
+      .transaction-date {
+        color: #7f8c8d;
+        font-size: 14px;
+        margin-bottom: 3px;
+      }
+
+      .transaction-staff {
+        color: #95a5a6;
+        font-size: 13px;
+      }
+
+      .transaction-amount {
+        color: #e67e22;
+        font-weight: bold;
+        font-size: 18px;
+      }
+
+      .status-badge {
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 500;
+        margin-left: 10px;
+      }
+
+      .status-completed {
+        background: #d4edda;
+        color: #155724;
+      }
+
+      .status-pending {
+        background: #fff3cd;
+        color: #856404;
+      }
+
+      .status-cancelled {
+        background: #f8d7da;
+        color: #721c24;
+      }
+
+      .appointment-item {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 15px;
+        border-left: 4px solid #e67e22;
+      }
+
+      .appointment-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 10px;
+      }
+
+      .appointment-service {
+        font-weight: 600;
+        color: #2c3e50;
+        font-size: 16px;
+      }
+
+      .appointment-time {
+        color: #e67e22;
+        font-weight: 500;
+      }
+
+      .appointment-details {
+        color: #7f8c8d;
+        font-size: 14px;
+      }
+
+      .loyalty-progress {
+        background: #ecf0f1;
+        border-radius: 10px;
+        height: 20px;
+        overflow: hidden;
+        margin: 15px 0;
+      }
+
+      .loyalty-bar {
+        background: linear-gradient(135deg, #e67e22 0%, #f39c12 100%);
+        height: 100%;
+        transition: width 0.3s;
+      }
+
+      .quick-actions {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+      }
+
+      .action-btn {
+        background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        border: none;
+        border-radius: 10px;
+        padding: 15px 20px;
+        color: white;
+        font-weight: 500;
+        text-decoration: none;
+        text-align: center;
+        transition: transform 0.3s;
+        display: block;
+      }
+
+      .action-btn:hover {
+        transform: translateY(-2px);
+        color: white;
+        text-decoration: none;
+      }
+
+      .action-btn.secondary {
+        background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+      }
+
+      .action-btn.success {
+        background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+      }
+
+      .pagination-custom {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      .pagination-custom .page-link {
+        border-radius: 8px;
+        margin: 0 3px;
+        border: none;
+        background: #f8f9fa;
+        color: #2c3e50;
+      }
+
+      .pagination-custom .page-link:hover,
+      .pagination-custom .page-item.active .page-link {
+        background: #e67e22;
+        color: white;
+      }
+
+      @media (max-width: 768px) {
+        .login-body {
+          padding: 30px 20px;
+        }
+
+        .dashboard-content {
+          padding: 20px 15px;
+        }
+
+        .section-body {
+          padding: 20px 15px;
+        }
+
+        .transaction-item {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+
+        .appointment-header {
+          flex-direction: column;
+          gap: 5px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Login Form -->
+    <div id="loginContainer" class="login-container">
+      <div class="login-card">
+        <div class="login-header">
+          <span
+            class="flaticon-scissors-in-a-hair-salon-badge"
+            style="font-size: 48px; margin-bottom: 15px"
+          ></span>
+          <h3>Hair Studio</h3>
+          <p style="margin: 5px 0 0 0; opacity: 0.9">Đăng Nhập Tài Khoản</p>
+        </div>
+        <div class="login-body">
+          <form id="loginForm">
+            <div class="form-group">
+              <label>Số điện thoại hoặc Email</label>
+              <input
+                type="text"
+                class="form-control"
+                id="username"
+                placeholder="Nhập số điện thoại hoặc email"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label>Mật khẩu</label>
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                placeholder="Nhập mật khẩu"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <div class="form-check">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="rememberMe"
+                />
+                <label class="form-check-label" for="rememberMe"
+                  >Ghi nhớ đăng nhập</label
+                >
+              </div>
+            </div>
+            <button type="submit" class="btn btn-login">
+              <i class="ion-log-in"></i> Đăng Nhập
+            </button>
+          </form>
+          <div class="text-center mt-3">
+            <p>
+              <a href="#" style="color: #e67e22">Quên mật khẩu?</a> |
+              <a href="#" style="color: #e67e22">Đăng ký tài khoản</a>
+            </p>
+            <p>
+              <a href="index.html" style="color: #7f8c8d">← Về trang chủ</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Customer Dashboard -->
+    <div id="dashboardContainer" class="dashboard-container">
+      <div class="dashboard-header">
+        <div class="container">
+          <div class="user-info">
+            <div style="display: flex; align-items: center">
+              <div class="user-avatar">NT</div>
+              <div class="user-details ml-3">
+                <h5 id="userName">Nguyễn Thị Mai</h5>
+                <p id="userEmail">mai.nguyen@email.com</p>
+              </div>
+            </div>
+            <div>
+              <button
+                class="btn btn-outline-primary mr-2"
+                onclick="editProfile()"
+              >
+                <i class="ion-edit"></i> Sửa Hồ Sơ
+              </button>
+              <button class="btn btn-outline-danger" onclick="logout()">
+                <i class="ion-log-out"></i> Đăng Xuất
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-content">
+        <div class="container">
+          <!-- Statistics -->
+          <div class="row mb-4">
+            <div class="col-md-3 col-sm-6">
+              <div class="stats-card text-center">
+                <div class="stats-number">24</div>
+                <div class="stats-label">Lần Sử Dụng Dịch Vụ</div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="stats-card text-center">
+                <div class="stats-number">8.5M</div>
+                <div class="stats-label">Tổng Chi Tiêu</div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="stats-card text-center">
+                <div class="stats-number">1,250</div>
+                <div class="stats-label">Điểm Tích Lũy</div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <div class="stats-card text-center">
+                <div class="stats-number">VIP</div>
+                <div class="stats-label">Hạng Thành Viên</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <!-- Upcoming Appointments -->
+            <div class="col-lg-6 mb-4">
+              <div class="section-card">
+                <div class="section-header">
+                  <i class="ion-calendar"></i> Lịch Hẹn Sắp Tới
+                </div>
+                <div class="section-body">
+                  <div class="appointment-item">
+                    <div class="appointment-header">
+                      <div class="appointment-service">Cắt Tóc + Gội Đầu</div>
+                      <div class="appointment-time">10:30 - 11:30</div>
+                    </div>
+                    <div class="appointment-details">
+                      <div><strong>Ngày:</strong> 12/09/2024</div>
+                      <div><strong>Stylist:</strong> Minh Anh</div>
+                      <div><strong>Giá:</strong> 200,000 VNĐ</div>
+                    </div>
+                  </div>
+
+                  <div class="appointment-item">
+                    <div class="appointment-header">
+                      <div class="appointment-service">Nhuộm Tóc Highlight</div>
+                      <div class="appointment-time">14:00 - 16:00</div>
+                    </div>
+                    <div class="appointment-details">
+                      <div><strong>Ngày:</strong> 18/09/2024</div>
+                      <div><strong>Stylist:</strong> Thảo Linh</div>
+                      <div><strong>Giá:</strong> 800,000 VNĐ</div>
+                    </div>
+                  </div>
+
+                  <div class="quick-actions">
+                    <a href="services.html" class="action-btn">
+                      <i class="ion-plus"></i> Đặt Lịch Mới
+                    </a>
+                    <a href="#" class="action-btn secondary">
+                      <i class="ion-calendar"></i> Xem Tất Cả
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Loyalty Program -->
+            <div class="col-lg-6 mb-4">
+              <div class="section-card">
+                <div class="section-header">
+                  <i class="ion-trophy"></i> Chương Trình Thành Viên
+                </div>
+                <div class="section-body">
+                  <div class="text-center mb-3">
+                    <h4 style="color: #e67e22">Thành Viên VIP</h4>
+                    <p>Bạn đã tích lũy <strong>1,250 điểm</strong></p>
+                  </div>
+
+                  <div>
+                    <div
+                      style="
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 5px;
+                      "
+                    >
+                      <span>Tiến độ lên hạng Diamond</span>
+                      <span><strong>1,250/2,000</strong></span>
+                    </div>
+                    <div class="loyalty-progress">
+                      <div class="loyalty-bar" style="width: 62.5%"></div>
+                    </div>
+                    <small class="text-muted"
+                      >Còn 750 điểm để lên hạng Diamond</small
+                    >
+                  </div>
+
+                  <div class="mt-4">
+                    <h6>Ưu đãi hiện tại:</h6>
+                    <ul style="padding-left: 20px; color: #7f8c8d">
+                      <li>Giảm 15% tất cả dịch vụ</li>
+                      <li>Ưu tiên đặt lịch</li>
+                      <li>Tích điểm x2 vào cuối tuần</li>
+                      <li>Quà tặng sinh nhật</li>
+                    </ul>
+                  </div>
+
+                  <div class="quick-actions">
+                    <a href="#" class="action-btn success">
+                      <i class="ion-gift"></i> Đổi Quà
+                    </a>
+                    <a href="#" class="action-btn">
+                      <i class="ion-information"></i> Quy Định
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Transaction History -->
+          <div class="section-card">
+            <div class="section-header">
+              <i class="ion-ios-paper"></i> Lịch Sử Giao Dịch
+              <div style="float: right">
+                <select
+                  class="form-control form-control-sm"
+                  style="background: white; border: 1px solid #ddd"
+                >
+                  <option value="all">Tất cả giao dịch</option>
+                  <option value="completed">Đã hoàn thành</option>
+                  <option value="pending">Đang chờ</option>
+                  <option value="cancelled">Đã hủy</option>
+                </select>
+              </div>
+            </div>
+            <div class="section-body">
+              <div class="transaction-item">
+                <div class="transaction-info">
+                  <div class="transaction-service">Cắt Tóc Bob + Tạo Kiểu</div>
+                  <div class="transaction-date">05/09/2024 - 10:30 AM</div>
+                  <div class="transaction-staff">Stylist: Minh Anh</div>
+                </div>
+                <div style="text-align: right">
+                  <div class="transaction-amount">350,000 VNĐ</div>
+                  <span class="status-badge status-completed">Hoàn thành</span>
+                </div>
+              </div>
+
+              <div class="transaction-item">
+                <div class="transaction-info">
+                  <div class="transaction-service">
+                    Nhuộm Tóc Ombre + Chăm Sóc
+                  </div>
+                  <div class="transaction-date">28/08/2024 - 2:00 PM</div>
+                  <div class="transaction-staff">Stylist: Thảo Linh</div>
+                </div>
+                <div style="text-align: right">
+                  <div class="transaction-amount">1,200,000 VNĐ</div>
+                  <span class="status-badge status-completed">Hoàn thành</span>
+                </div>
+              </div>
+
+              <div class="transaction-item">
+                <div class="transaction-info">
+                  <div class="transaction-service">Gội Đầu + Massage</div>
+                  <div class="transaction-date">15/08/2024 - 4:30 PM</div>
+                  <div class="transaction-staff">Stylist: Mai Lan</div>
+                </div>
+                <div style="text-align: right">
+                  <div class="transaction-amount">150,000 VNĐ</div>
+                  <span class="status-badge status-completed">Hoàn thành</span>
+                </div>
+              </div>
+
+              <div class="transaction-item">
+                <div class="transaction-info">
+                  <div class="transaction-service">Cắt Tóc Layer + Uốn Nhẹ</div>
+                  <div class="transaction-date">02/08/2024 - 11:00 AM</div>
+                  <div class="transaction-staff">Stylist: Minh Anh</div>
+                </div>
+                <div style="text-align: right">
+                  <div class="transaction-amount">450,000 VNĐ</div>
+                  <span class="status-badge status-completed">Hoàn thành</span>
+                </div>
+              </div>
+
+              <div class="transaction-item">
+                <div class="transaction-info">
+                  <div class="transaction-service">Nhuộm Tóc Highlight</div>
+                  <div class="transaction-date">18/07/2024 - 1:00 PM</div>
+                  <div class="transaction-staff">Stylist: Thảo Linh</div>
+                </div>
+                <div style="text-align: right">
+                  <div class="transaction-amount">800,000 VNĐ</div>
+                  <span class="status-badge status-completed">Hoàn thành</span>
+                </div>
+              </div>
+
+              <!-- Pagination -->
+              <nav class="pagination-custom">
+                <ul class="pagination">
+                  <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Trước</a>
+                  </li>
+                  <li class="page-item active">
+                    <a class="page-link" href="#">1</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">2</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">3</a>
+                  </li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">Sau</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script>
+      // Login Form Handler
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const username = document.getElementById("username").value;
+          const password = document.getElementById("password").value;
+
+          // Simple validation (in real app, this would be server-side)
+          if (username && password) {
+            // Simulate login success
+            setTimeout(() => {
+              document.getElementById("loginContainer").style.display = "none";
+              document.getElementById("dashboardContainer").style.display =
+                "block";
+
+              // Update user info based on login
+              updateUserInfo(username);
+              showNotification("Đăng nhập thành công!", "success");
+            }, 1000);
+
+            showNotification("Đang đăng nhập...", "info");
+          } else {
+            showNotification("Vui lòng nhập đầy đủ thông tin!", "error");
+          }
+        });
+
+      // Update user information
+      function updateUserInfo(username) {
+        // In real app, this data would come from server
+        const userData = {
+          "mai.nguyen@email.com": {
+            name: "Nguyễn Thị Mai",
+            email: "mai.nguyen@email.com",
+            avatar: "NM",
+          },
+          "0123456789": {
+            name: "Trần Văn Nam",
+            email: "nam.tran@email.com",
+            avatar: "TN",
+          },
+        };
+
+        const user = userData[username] || {
+          name: "Khách Hàng",
+          email: username,
+          avatar: "KH",
+        };
+
+        document.getElementById("userName").textContent = user.name;
+        document.getElementById("userEmail").textContent = user.email;
+        document.querySelector(".user-avatar").textContent = user.avatar;
+      }
+
+      // Logout function
+      function logout() {
+        if (confirm("Bạn có chắc chắn muốn đăng xuất?")) {
+          document.getElementById("dashboardContainer").style.display = "none";
+          document.getElementById("loginContainer").style.display = "flex";
+          document.getElementById("loginForm").reset();
+          showNotification("Đã đăng xuất thành công!", "success");
+        }
+      }
+
+      // Edit profile function
+      function editProfile() {
+        showNotification(
+          "Chức năng chỉnh sửa hồ sơ sẽ được triển khai!",
+          "info"
+        );
+      }
+
+      // Transaction filter
+      document.querySelector("select").addEventListener("change", function () {
+        const filterValue = this.value;
+        const transactions = document.querySelectorAll(".transaction-item");
+
+        transactions.forEach((transaction) => {
+          const status = transaction
+            .querySelector(".status-badge")
+            .textContent.toLowerCase();
+
+          if (filterValue === "all") {
+            transaction.style.display = "flex";
+          } else if (
+            filterValue === "completed" &&
+            status.includes("hoàn thành")
+          ) {
+            transaction.style.display = "flex";
+          } else if (filterValue === "pending" && status.includes("chờ")) {
+            transaction.style.display = "flex";
+          } else if (filterValue === "cancelled" && status.includes("hủy")) {
+            transaction.style.display = "flex";
+          } else {
+            transaction.style.display = "none";
+          }
+        });
+
+        showNotification(
+          `Đã lọc theo: ${this.options[this.selectedIndex].text}`,
+          "info"
+        );
+      });
+
+      // Notification system
+      function showNotification(message, type = "info") {
+        const notification = document.createElement("div");
+        notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 15px 20px;
+                border-radius: 10px;
+                color: white;
+                font-weight: 500;
+                z-index: 9999;
+                opacity: 0;
+                transform: translateX(100%);
+                transition: all 0.3s ease;
+                max-width: 300px;
+            `;
+
+        const colors = {
+          success: "#27ae60",
+          error: "#e74c3c",
+          warning: "#f39c12",
+          info: "#3498db",
+        };
+
+        notification.style.backgroundColor = colors[type] || colors["info"];
+        notification.textContent = message;
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+          notification.style.opacity = "1";
+          notification.style.transform = "translateX(0)";
+        }, 100);
+
+        setTimeout(() => {
+          notification.style.opacity = "0";
+          notification.style.transform = "translateX(100%)";
+          setTimeout(() => {
+            document.body.removeChild(notification);
+          }, 300);
+        }, 3000);
+      }
+
+      // Demo accounts info
+      document.addEventListener("DOMContentLoaded", function () {
+        // Show demo info
+        setTimeout(() => {
+          showNotification(
+            'Demo: Dùng "mai.nguyen@email.com" hoặc "0123456789" để đăng nhập',
+            "info"
+          );
+        }, 1000);
+      });
+
+      // Smooth animations
+      document
+        .querySelectorAll(".stats-card, .section-card")
+        .forEach((card) => {
+          card.addEventListener("mouseenter", function () {
+            this.style.transform = "translateY(-5px)";
+          });
+
+          card.addEventListener("mouseleave", function () {
+            this.style.transform = "translateY(0)";
+          });
+        });
+
+      // Auto refresh loyalty points (demo)
+      setInterval(() => {
+        const pointsElement = document.querySelector(
+          ".stats-card .stats-number:nth-of-type(3)"
+        );
+        if (
+          pointsElement &&
+          document.getElementById("dashboardContainer").style.display !== "none"
+        ) {
+          let currentPoints = parseInt(
+            pointsElement.textContent.replace(",", "")
+          );
+          // Simulate points increase
+          if (Math.random() < 0.1) {
+            // 10% chance every interval
+            currentPoints += Math.floor(Math.random() * 50) + 10;
+            pointsElement.textContent = currentPoints.toLocaleString();
+
+            // Update progress bar
+            const progressBar = document.querySelector(".loyalty-bar");
+            const newWidth = Math.min((currentPoints / 2000) * 100, 100);
+            progressBar.style.width = newWidth + "%";
+
+            if (currentPoints >= 2000) {
+              showNotification(
+                "Chúc mừng! Bạn đã lên hạng Diamond!",
+                "success"
+              );
+            }
+          }
+        }
+      }, 10000); // Check every 10 seconds
+    </script>
+  </body>
+</html>
