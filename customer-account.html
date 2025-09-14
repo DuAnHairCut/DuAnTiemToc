@@ -438,8 +438,13 @@
           </form>
           <div class="text-center mt-3">
             <p>
-              <a href="#" style="color: #e67e22">Quên mật khẩu?</a> |
-              <a href="#" style="color: #e67e22">Đăng ký tài khoản</a>
+              <a href="forgot-password.html" style="color: #e67e22"
+                >Quên mật khẩu?</a
+              >
+              |
+              <a href="register.html" style="color: #e67e22"
+                >Đăng ký tài khoản</a
+              >
             </p>
             <p>
               <a href="index.html" style="color: #7f8c8d">← Về trang chủ</a>
@@ -716,28 +721,70 @@
       // Login Form Handler
       document
         .getElementById("loginForm")
-        .addEventListener("submit", function (e) {
+        .addEventListener("submit", async function (e) {
           e.preventDefault();
 
-          const username = document.getElementById("username").value;
+          const username = document.getElementById("username").value.trim();
           const password = document.getElementById("password").value;
 
-          // Simple validation (in real app, this would be server-side)
-          if (username && password) {
-            // Simulate login success
-            setTimeout(() => {
-              document.getElementById("loginContainer").style.display = "none";
-              document.getElementById("dashboardContainer").style.display =
-                "block";
-
-              // Update user info based on login
-              updateUserInfo(username);
-              showNotification("Đăng nhập thành công!", "success");
-            }, 1000);
-
-            showNotification("Đang đăng nhập...", "info");
-          } else {
+          if (!username || !password) {
             showNotification("Vui lòng nhập đầy đủ thông tin!", "error");
+            return;
+          }
+
+          // Xác định là email hay số điện thoại
+          const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(username);
+          const isPhone = /^\d{8,15}$/.test(username);
+          let payload = { password };
+          if (isEmail) {
+            payload.email = username;
+          } else if (isPhone) {
+            payload.phone = username;
+          } else {
+            showNotification(
+              "Vui lòng nhập đúng email hoặc số điện thoại!",
+              "error"
+            );
+            return;
+          }
+
+          showNotification("Đang đăng nhập...", "info");
+          try {
+            const response = await fetch("http://127.0.0.1:8000/api/login/", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(payload),
+            });
+            const result = await response.json();
+            if (response.ok) {
+              if (result.is_staff === true || result.is_superuser === true) {
+                showNotification(
+                  "Đăng nhập admin thành công! Đang chuyển trang...",
+                  "success"
+                );
+                setTimeout(() => {
+                  window.location.href = "admin.html";
+                }, 1000);
+              } else {
+                document.getElementById("loginContainer").style.display =
+                  "none";
+                document.getElementById("dashboardContainer").style.display =
+                  "block";
+                updateUserInfo(username);
+                showNotification("Đăng nhập thành công!", "success");
+              }
+            } else {
+              showNotification(
+                result.detail ||
+                  result.message ||
+                  "Sai tài khoản hoặc mật khẩu!",
+                "error"
+              );
+            }
+          } catch (error) {
+            showNotification("Lỗi kết nối server!", "error");
           }
         });
 
